@@ -26,7 +26,11 @@ While other apps are available that provide similar functionality, the objective
 
 ## Functionality
 
-### Sending BLE advertisements
+<details>
+<summary>### Sending BLE advertisements</summary>
+<br>
+This is how you dropdown.
+</details>  
 
 This app can send BLE advertisements that mimic the usage of various services.
 This can cause nearby devices that listen to such advertisements to show unwanted popup dialogs.
