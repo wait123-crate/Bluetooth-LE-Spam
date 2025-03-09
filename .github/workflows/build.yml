@@ -9,16 +9,24 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    steps:
 
+    steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v2
         with:
-          distribution: 'temurin'
+          distribution: 'adoptopenjdk'  # Specify the distribution (you can use 'temurin' for newer versions)
           java-version: 11
+          java-package: jdk
+          architecture: x64
+          check-latest: false
+          server-id: github
+          server-username: ${{ github.actor }}
+          server-password: ${{ github.token }}
+          overwrite-settings: true
+          job-status: success
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -39,7 +47,10 @@ jobs:
             export KEY_ALIAS="${{ secrets.KEY_ALIAS }}"
             export KEY_PASSWORD="${{ secrets.KEY_PASSWORD }}"
           fi
-          ./gradlew assemble --no-daemon --stacktrace --warning-mode=all
+          ./gradlew assemble --no-daemon --stacktrace --info --warning-mode=all
+
+      - name: Debug build output
+        run: ls -R app/build/outputs/apk/
 
       - name: Upload
         uses: actions/upload-artifact@v4
