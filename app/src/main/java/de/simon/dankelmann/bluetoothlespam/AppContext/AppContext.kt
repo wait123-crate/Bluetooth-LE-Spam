@@ -2,20 +2,21 @@ package de.simon.dankelmann.bluetoothlespam
 
 import android.content.Context
 
-class AppContext {
+class AppContext private constructor() {
     companion object {
+        // Hold the app context globally
         private var _context: Context? = null
 
-        // Initialize the context once (called from Application class or main entry point)
+        // Method to initialize the AppContext
         fun initialize(context: Context) {
             if (_context == null) {
-                _context = context.applicationContext // Use applicationContext to avoid memory leaks
+                _context = context.applicationContext
             }
         }
 
-        // Safely get the context
+        // Method to access the app context
         fun getContext(): Context {
-            return _context ?: throw IllegalStateException("Context has not been initialized")
+            return _context ?: throw IllegalStateException("AppContext not initialized!")
         }
     }
 }
