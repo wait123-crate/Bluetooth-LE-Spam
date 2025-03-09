@@ -19,6 +19,16 @@ android {
         versionName = "1.0.9"
     }
 
+    sourceSets {
+        getByName("main") {
+            res.srcDirs("src/main/res")
+        }
+    }
+
+    androidResources {
+        noCompress += listOf("ogg", "wav", "mp3")
+    }
+
     signingConfigs {
         create("release") {
             storeFile = file("release.jks")
@@ -33,6 +43,7 @@ android {
             val variant = if (File("release.jks").exists()) "release" else "debug"
             signingConfig = signingConfigs[variant]
         }
+
         release {
             resValue("string", "app_name", app_name)
             isMinifyEnabled = false
@@ -41,6 +52,7 @@ android {
                 "proguard-rules.pro"
             )
         }
+
         debug {
             resValue("string", "app_name", "$app_name Debug")
             applicationIdSuffix = ".debug"
@@ -61,10 +73,8 @@ android {
     }
 }
 
-
 dependencies {
     implementation(libs.airbnb.lottie)
-
     implementation(libs.core.ktx)
     implementation(libs.preference.ktx)
     implementation(libs.kotlinx.coroutines)
@@ -76,31 +86,13 @@ dependencies {
     implementation(libs.legacy.support)
     implementation(libs.android.constraintlayout)
     implementation(libs.google.material)
-
     implementation(libs.room.runtime)
     annotationProcessor(libs.room.compiler)
 
     // To use Kotlin annotation processing tool (kapt)
     kapt(libs.room.compiler)
 
-    // To use Kotlin Symbol Processing (KSP)
-    //ksp(libs.room.compiler)
-
-    // optional - Kotlin Extensions and Coroutines support for Room
-    //implementation(libs.room.ktx)
-
-    // optional - RxJava2 support for Room
-    //implementation(libs.room.rxjava2)
-
     // optional - RxJava3 support for Room
     implementation(libs.room.rxjava3)
-
-    // optional - Guava support for Room, including Optional and ListenableFuture
-    //implementation(libs.room.guava)
-
-    // optional - Test helpers
-    //testImplementation(libs.room.testing)
-
-    // optional - Paging 3 Integration
-    //implementation(libs.room.paging)
 }
+

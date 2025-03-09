@@ -18,11 +18,7 @@
         <item name="seekbarSecondaryProgress">?attr/colorPrimaryVariant</item>
     </style>
 
-    <style name="Theme.BluetoothLESpam.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
+   
     <style name="ActionButton.Overflow.Icon" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">
         <item name="android:src">@drawable/settings</item>
         <item name="color">@color/foreground_color_action_bar</item>

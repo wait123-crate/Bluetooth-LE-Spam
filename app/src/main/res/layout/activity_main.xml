@@ -38,6 +38,20 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph" />
 
+    <!-- Add Button at the Bottom of the Screen -->
+    <Button
+        android:id="@+id/screen_mirror_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Find Screen Mirroring TVs"
+        android:layout_alignParentBottom="true" /> <!-- Ensures button is at the bottom -->
+		
+	<Button
+		android:id="@+id/stop_button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Stop" />
+	
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
@@ -45,3 +59,4 @@
         app:menu="@menu/menu_bottom_nav" />
 
 </LinearLayout>
+
