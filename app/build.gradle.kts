@@ -87,7 +87,7 @@ dependencies {
     implementation(libs.android.constraintlayout)
     implementation(libs.google.material)
     implementation(libs.room.runtime)
-implementation 'com.google.android.material:material:1.11.0'
+implementation("com.google.android.material:material:1.11.0")
     annotationProcessor(libs.room.compiler)
 
     // To use Kotlin annotation processing tool (kapt)
