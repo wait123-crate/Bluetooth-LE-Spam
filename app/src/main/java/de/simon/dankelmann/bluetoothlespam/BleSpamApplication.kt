@@ -12,6 +12,10 @@ class BleSpamApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        // Initialize the AppContext with the application context
+        AppContext.initialize(this)
+
+        // Initialize the scanService
         scanService = BluetoothLeScanService(this)
     }
 }
