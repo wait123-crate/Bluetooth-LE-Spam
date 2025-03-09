@@ -1,53 +1,22 @@
-package de.simon.dankelmann.bluetoothlespam.AppContext
+package de.simon.dankelmann.bluetoothlespam
 
-import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothManager
 import android.content.Context
-import de.simon.dankelmann.bluetoothlespam.Handlers.AdvertisementSetQueueHandler
-import de.simon.dankelmann.bluetoothlespam.Interfaces.Services.IAdvertisementService
 
-abstract class AppContext {
+class AppContext {
     companion object {
-
         private lateinit var _context: Context
-        private lateinit var _advertisementService: IAdvertisementService
-        private lateinit var _advertisementSetQueueHandler: AdvertisementSetQueueHandler
 
-        fun setContext(context: Context) {
-            _context = context
+        // Method to initialize the context (should be called early, like in onCreate)
+        fun initialize(context: Context) {
+            _context = context.applicationContext // Use applicationContext for better memory management
         }
 
+        // Method to retrieve the context
         fun getContext(): Context {
+            if (!:: _context.isInitialized) {
+                throw IllegalStateException("Context has not been initialized")
+            }
             return _context
         }
-
-        fun setAdvertisementService(advertisementService: IAdvertisementService) {
-            _advertisementService = advertisementService
-        }
-
-        fun getAdvertisementService(): IAdvertisementService {
-            return _advertisementService
-        }
-
-        fun advertisementServiceIsInitialized(): Boolean {
-            return this::_advertisementService.isInitialized
-        }
-
-        fun setAdvertisementSetQueueHandler(advertisementSetQueueHandler: AdvertisementSetQueueHandler) {
-            _advertisementSetQueueHandler = advertisementSetQueueHandler
-        }
-
-        fun getAdvertisementSetQueueHandler(): AdvertisementSetQueueHandler {
-            return _advertisementSetQueueHandler
-        }
-
-        fun advertisementSetQueueHandlerIsInitialized(): Boolean {
-            return this::_advertisementSetQueueHandler.isInitialized
-        }
-
-        fun registerPermissionCallback(requestCode: Int, callback:Runnable){
-
-        }
-
     }
 }
