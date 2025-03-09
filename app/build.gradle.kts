@@ -21,7 +21,11 @@ android {
 
     sourceSets {
         getByName("main") {
+            java.srcDirs("src/main/kotlin", "src/main/java")  // Ensure Kotlin source is correctly defined
             res.srcDirs("src/main/res")
+        }
+        getByName("release") {
+            java.srcDirs("src/release/kotlin", "src/release/java")  // Ensure the release source dirs are defined
         }
     }
 
@@ -87,13 +91,12 @@ dependencies {
     implementation(libs.android.constraintlayout)
     implementation(libs.google.material)
     implementation(libs.room.runtime)
-implementation("com.google.android.material:material:1.11.0")
+    implementation("com.google.android.material:material:1.11.0") // Material dependency (already included)
     annotationProcessor(libs.room.compiler)
 
     // To use Kotlin annotation processing tool (kapt)
     kapt(libs.room.compiler)
 
-    // optional - RxJava3 support for Room
+    // Optional - RxJava3 support for Room
     implementation(libs.room.rxjava3)
 }
-
