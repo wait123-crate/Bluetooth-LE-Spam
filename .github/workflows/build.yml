@@ -17,16 +17,8 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
-          distribution: 'adoptopenjdk'  # Specify the distribution (you can use 'temurin' for newer versions)
-          java-version: 11
-          java-package: jdk
-          architecture: x64
-          check-latest: false
-          server-id: github
-          server-username: ${{ github.actor }}
-          server-password: ${{ github.token }}
-          overwrite-settings: true
-          job-status: success
+          distribution: 'temurin'  # Correct distribution for JDK 21
+          java-version: 21
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
