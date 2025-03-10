@@ -5,17 +5,16 @@ import de.simon.dankelmann.bluetoothlespam.Interfaces.Services.IBluetoothLeScanS
 import de.simon.dankelmann.bluetoothlespam.Services.BluetoothLeScanService
 
 class BleSpamApplication : Application() {
-
     lateinit var scanService: IBluetoothLeScanService
         private set
 
     override fun onCreate() {
         super.onCreate()
 
-        // Initialize the AppContext with the application context
+        // Initialize AppContext here
         AppContext.initialize(this)
 
-        // Initialize the scanService
+        // Initialize BluetoothLeScanService
         scanService = BluetoothLeScanService(this)
     }
 }
